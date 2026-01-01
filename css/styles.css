@@ -737,9 +737,9 @@ footer {
 @media (max-width: 768px) {
 
   /* Prevent horizontal overflow */
-  html,
   body {
     overflow-x: hidden;
+    overflow-y: auto;
     width: 100%;
     position: relative;
   }
