@@ -23,6 +23,7 @@ body {
   background-color: var(--bg-color);
   line-height: 1.6;
   overflow-x: hidden;
+  /* Prevent horizontal scroll */
 }
 
 a {
@@ -48,7 +49,9 @@ header {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000;
+  left: 0;
+  z-index: 9999;
+  /* Ensure top priority */
   padding: 10px 0;
   transition: all 0.3s ease;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
@@ -732,8 +735,21 @@ footer {
 
 /* Mobile Responsive (768px and below) */
 @media (max-width: 768px) {
+
+  /* Prevent horizontal overflow */
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
   .container {
-    padding: 0 15px;
+    padding: 0 25px;
+    /* Increase side padding to reduce content width slightly */
+    overflow-x: hidden;
+    /* Ensure container clips inner overflow */
+    width: 100%;
   }
 
   /* Strict Mobile Menu */
@@ -758,7 +774,6 @@ footer {
   }
 
   .nav-links .cta-button {
-    /* This rule is now redundant as CTA is moved out, but keeping for safety if reverted */
     display: none;
   }
 
@@ -767,11 +782,29 @@ footer {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    padding: 10px 15px;
-    font-size: 0.85rem;
+    padding: 8px 12px;
+    font-size: 0.8rem;
     margin-right: 15px;
-    /* Space from hamburger */
     white-space: nowrap;
+  }
+
+  /* Header Logic for Sticky */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
+  /* Logo Size Reduction */
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo img {
+    max-height: 30px;
+    margin-right: 8px;
   }
 
   .mobile-menu-btn {
@@ -814,6 +847,12 @@ footer {
     align-items: center;
   }
 
+  /* Hero Image Scale Reduction */
+  .hero-image img {
+    max-width: 280px;
+    width: 100%;
+  }
+
   .hero h1 {
     font-size: 2rem;
     word-break: keep-all;
@@ -844,6 +883,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
   }
 
   .feature-card,
@@ -878,6 +918,7 @@ footer {
     text-align: center;
     gap: 30px;
     margin-bottom: 40px;
+    width: 100%;
   }
 
   .service-row.reverse {
@@ -899,17 +940,35 @@ footer {
   .service-content h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
+    word-break: break-word;
   }
 
+  /* Centering Service Lists with Orange Checks (01-03) */
+  .service-content ul li {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .service-content p {
+    word-break: keep-all;
+  }
+
+  /* Centering Service List Cards (04-06) */
   .service-list-card li {
-    padding-left: 30px;
-    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+    text-align: center;
+    gap: 10px;
     margin-bottom: 8px;
   }
 
   .service-list-card li::before {
-    left: 0;
-    top: 3px;
+    position: static;
+    left: auto;
+    top: auto;
+    margin-right: 0;
   }
 
   .cta-box h2 {
@@ -937,15 +996,6 @@ footer {
   }
 
   .header-cta {
-    display: none;
-    /* Hide top CTA if it's usually in nav, wait, design choice? 
-           Check if desktop relies on this. 
-           Desktop originally had CTA after nav-links, OUTSIDE nav-links in Step 514?
-           Let's check.
-           Step 514: <div class="nav-links">...</div> ... <a ... class="cta-button">...</a>
-           Yes. So on Desktop it should be visible. 
-           So I should NOT hide it on desktop.
-        */
     display: inline-block;
   }
 }
