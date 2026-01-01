@@ -8,17 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
     */
 
     // 2. Mobile Menu Toggle
-    const mobileMenuBtn = document.createElement('div');
-    mobileMenuBtn.className = 'mobile-menu-btn';
-    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-
+    // Attempt to find existing button first
+    let mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('nav');
     const navLinks = document.querySelector('.nav-links');
 
-    // Insert the button before the CTA button or append to nav
-    // Looking at HTML, nav contains logo, nav-links, cta-button.
-    // Let's insert it before nav-links for better control or just append to nav.
-    nav.insertBefore(mobileMenuBtn, navLinks);
+    if (!mobileMenuBtn) {
+        // Fallback if not found in HTML
+        mobileMenuBtn = document.createElement('div');
+        mobileMenuBtn.className = 'mobile-menu-btn';
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        // Insert before navLinks or adjust position as needed
+        nav.insertBefore(mobileMenuBtn, navLinks);
+    }
 
     mobileMenuBtn.addEventListener('click', () => {
         navLinks.classList.toggle('active');
