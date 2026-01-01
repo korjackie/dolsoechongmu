@@ -338,18 +338,22 @@
                     <h2>지금 바로 문의하세요</h2>
                     <p>전문가가 직접 친절하게 상담해 드립니다.</p>
 
-                    <form class="contact-form">
+                    <form class="contact-form" action="https://formsubmit.co/multimove247@gmail.com" method="POST">
+                        <!-- Email Settings -->
+                        <input type="hidden" name="_subject" value="[돌쇠총무] 새로운 홈페이지 문의가 도착했습니다!">
+                        <input type="hidden" name="_captcha" value="false">
+
                         <div class="form-group">
-                            <input type="text" placeholder="이름 (상호명)" required>
+                            <input type="text" name="name" placeholder="이름 (상호명)" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="연락처" required>
+                            <input type="tel" name="phone" placeholder="연락처" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="이메일">
+                            <input type="email" name="email" placeholder="이메일">
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="문의내용을 자유롭게 적어주세요" rows="5"></textarea>
+                            <textarea name="message" placeholder="문의내용을 자유롭게 적어주세요" rows="5"></textarea>
                         </div>
                         <button type="submit" class="cta-button btn-large btn-submit">문의하기</button>
                     </form>
