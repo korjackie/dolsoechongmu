@@ -736,10 +736,8 @@ footer {
 /* Mobile Responsive (768px and below) */
 @media (max-width: 768px) {
 
-  /* Prevent horizontal overflow */
+  /* Prevent horizontal overflow - REMOVED to fix scroll lock */
   body {
-    overflow-x: hidden;
-    overflow-y: auto;
     width: 100%;
     position: relative;
   }
@@ -747,8 +745,6 @@ footer {
   .container {
     padding: 0 25px;
     /* Increase side padding to reduce content width slightly */
-    overflow-x: hidden;
-    /* Ensure container clips inner overflow */
     width: 100%;
   }
 
